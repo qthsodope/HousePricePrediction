@@ -1,69 +1,44 @@
-# Hướng Dẫn Triển Khai Project Dự Đoán Giá Nhà
+# 🏡 Hướng Dẫn Triển Khai Project Dự Đoán Giá Nhà
 
 ---
 
 ## 1. Yêu cầu trước khi bắt đầu
 
-- Máy tính đã cài **Python phiên bản mới nhất** (khuyến nghị Python 3.8 trở lên).
-- Có kết nối Internet để cài đặt các thư viện cần thiết.
-- Có thể mở được terminal (Command Prompt, PowerShell trên Windows hoặc Terminal trên macOS/Linux).
+- Máy tính đã cài **Python 3.8 trở lên**
+- Có kết nối Internet để cài đặt thư viện
+- Biết cách mở **Terminal** (Command Prompt, PowerShell trên Windows hoặc Terminal trên macOS/Linux)
 
 ---
 
 ## 2. Tải project và giải nén
 
-1. Ngay tại repo **HousePricePrediction** Nhấn nút **Code** (màu xanh lá) → chọn **Download ZIP**.
-2. File ZIP sẽ được tải về máy tính, thường có tên `HousePricePrediction-main.zip`.
-3. Giải nén file ZIP vừa tải để được thư mục `HousePricePrediction-main`.
-   - Trên Windows: nhấp chuột phải vào file ZIP → chọn **Extract All...** → chọn vị trí giải nén → bấm **Extract**.
-   - Trên macOS/Linux: nhấp chuột phải → chọn **Giải nén** hoặc dùng lệnh terminal `unzip HousePricePrediction-main.zip`.
-4. Sau khi giải nén, bạn sẽ có thư mục `HousePricePrediction-main` chứa toàn bộ mã nguồn và file dữ liệu.
+1. Truy cập repo **HousePricePrediction** → nhấn **Code** → **Download ZIP**
+2. Giải nén file `.zip` để thu được thư mục `HousePricePrediction-main`
+   - Windows: nhấp chuột phải → **Extract All...**
+   - macOS/Linux: nhấp chuột phải → **Giải nén** hoặc dùng lệnh `unzip`
 
 ---
 
 ## 3. Mở Terminal và chuyển đến thư mục project
 
-1. **Mở Terminal**  
-   - Trên **Windows**: Nhấn `Win + R`, gõ `cmd`.
-   - Trên **macOS/Linux**: Mở ứng dụng **Terminal**.
+```bash
+# Mở Terminal và chuyển đến thư mục vừa giải nén
+cd "đường_dẫn_đến_thư_mục_HousePricePrediction-main"
 
-2. **Copy đường dẫn đầy đủ của thư mục project**  
-   - Mở thư mục `HousePricePrediction-main` vừa giải nén trên máy tính.  
-   - Click vào thanh địa chỉ của cửa sổ thư mục, **copy toàn bộ đường dẫn**.  
-     
-     Ví dụ:  
-     - Windows:  
-       `C:\Users\Username\Downloads\HousePricePrediction-main`  
-     - macOS/Linux:  
-       `/Users/username/Downloads/HousePricePrediction-main`
+# Ví dụ:
+cd "C:\Users\TenUser\Downloads\HousePricePrediction-main"
 
-3. **Chuyển đến thư mục project trong Terminal**  
-   - Quay lại cửa sổ Terminal, gõ lệnh sau rồi nhấn Enter:  
-     ```bash
-     cd "đường_dẫn_bạn_vừa_copy"
-     ```  
-     
-     Ví dụ:  
-     ```bash
-     cd "C:\Users\Username\Downloads\HousePricePrediction-main"
-     ```
-     
-4. **Kiểm tra bạn đã vào đúng thư mục**  
-   - Windows:  
-     ```bash
-     dir
-     ```  
-   - macOS/Linux:  
-     ```bash
-     ls
-     ```  
-   Bạn sẽ thấy các file như `App.py`, `Hanoi_housing_dataset.csv`, v.v.
+# Kiểm tra bạn đã vào đúng thư mục
+# Windows:
+dir
+
+# macOS/Linux:
+ls
+```
 
 ---
 
 ## 4. Cài đặt các thư viện cần thiết
-
-Trong terminal (vẫn đang ở thư mục project), chạy lệnh sau để cài đặt tất cả thư viện cần thiết:
 
 ```bash
 pip install pandas numpy matplotlib scikit-learn streamlit
@@ -71,15 +46,42 @@ pip install pandas numpy matplotlib scikit-learn streamlit
 
 ---
 
-## 5. Chạy ứng dụng
+## 5. Chạy project
 
-Trong terminal (vẫn ở thư mục project), chạy lệnh sau để khởi động ứng dụng:
+### ▶️ Cách 1: Giao diện Web với Streamlit (GUI)
 
 ```bash
 streamlit run App.py
 ```
 
+- Trình duyệt sẽ mở ra giao diện để bạn nhập diện tích và xem dự đoán giá.
+- Có biểu đồ trực quan và so sánh 3 phương pháp hồi quy.
+
 ---
 
+### ▶️ Cách 2: Chạy trong Terminal bằng `Main.py`
 
+```bash
+python Main.py
+```
 
+Bạn sẽ thấy:
+
+- Kết quả đánh giá mô hình (RMSE, MAE)
+- Vòng lặp cho phép nhập diện tích bất kỳ và in ra dự đoán giá/m²
+
+Ví dụ:
+
+```text
+Nhập diện tích cần dự đoán (hoặc gõ 'quit' để thoát): 80
+→ Dự đoán giá/m² cho nhà 80 m²: 46,123,456 VND/m²
+```
+
+Gõ `"quit"` để thoát khỏi chương trình.
+
+---
+
+- **App.py**: dùng để chạy ứng dụng Web, phù hợp cho người dùng không chuyên kỹ thuật
+- **Main.py**: chạy trong Terminal, phù hợp để kiểm thử, đánh giá mô hình, hoặc chạy nhanh
+
+Bạn có thể chọn cách chạy phù hợp với nhu cầu của mình.
